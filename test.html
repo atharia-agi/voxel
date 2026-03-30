@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voxel Engine Pro - Test Page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-container">
+        <canvas id="test-canvas"></canvas>
+        
+        <div class="ui-overlay">
+            <h2>🧪 Voxel Engine Test</h2>
+            <p>This is a test page to verify engine functionality.</p>
+            <div id="test-results"></div>
+        </div>
+        
+        <div class="controls-panel">
+            <button class="button" onclick="runTests()">🔬 Run Tests</button>
+            <button class="button" onclick="benchmark()">⚡ Benchmark</button>
+            <button class="button" onclick="stressTest()">🔥 Stress Test</button>
+            <button class="button" onclick="resetTest()">🔄 Reset</button>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        // Test Suite
+        class VoxelTest {
+            constructor() {
+                this.results = [];
+                this.canvas = document.getElementById('test-canvas');
+                this.setupBasicScene();
+            }
+            
+            setupBasicScene() {
+                // Basic Three.js setup
+                this.scene = new THREE.Scene();
+                this.scene.background = new THREE.Color(0x87CEEB);
+                
+                this.camera = new THREE.PerspectiveCamera(
+                    75,
+                    window.innerWidth / window.innerHeight,
+                    0.1,
+                    1000
+                );
+                this.camera.position.z = 5;
+                
+                this.renderer = new THREE.WebGLRenderer({
+                    canvas: this.canvas,
+                    antialias: true
+                });
+                this.renderer.setSize(window.innerWidth, window.innerHeight);
+                
+                // Add test cube
+                const geometry = new THREE.BoxGeometry(1, 1, 1);
+                const material = new THREE.MeshBasicMaterial({ 
+                    color: 0x00ff00,
+                    wireframe: true 
+                });
+                this.cube = new THREE.Mesh(geometry, material);
+                this.scene.add(this.cube);
+                
+                // Animation loop
+                this.animate();
+            }
+            
+            animate() {
+                requestAnimationFrame(() => this.animate());
+                
+                this.cube.rotation.x += 0.01;
+                this.cube.rotation.y += 0.01;
+                
+                this.renderer.render(this.scene, this.camera);
+            }
+            
+            testWebGL() {
+                const gl = this.canvas.getContext('webgl') || 
+                          this.canvas.getContext('experimental-webgl');
+                return !!gl;
+            }
+            
+            testThreeJS() {
+                return typeof THREE !== 'undefined';
+            }
+            
+            testCanvas() {
+                return !!this.canvas;
+            }
+            
+            testRenderer() {
+                return !!this.renderer;
+            }
+            
+            testPerformance() {
+                const start = performance.now();
+                for (let i = 0; i < 1000000; i++) {
+                    Math.sqrt(i);
+                }
+                const end = performance.now();
+                return end - start < 100;
+            }
+            
+            runAllTests() {
+                this.results = [];
+                
+                // Test 1: WebGL Support
+                this.results.push({
+                    name: 'WebGL Support',
+                    passed: this.testWebGL(),
+                    message: this.testWebGL() ? 
+                        'WebGL is supported' : 
+                        'WebGL is not supported'
+                });
+                
+                // Test 2: Three.js Loading
+                this.results.push({
+                    name: 'Three.js Loading',
+                    passed: this.testThreeJS(),
+                    message: this.testThreeJS() ? 
+                        'Three.js loaded successfully' : 
+                        'Three.js failed to load'
+                });
+                
+                // Test 3: Canvas Element
+                this.results.push({
+                    name: 'Canvas Element',
+                    passed: this.testCanvas(),
+                    message: this.testCanvas() ? 
+                        'Canvas element exists' : 
+                        'Canvas element missing'
+                });
+                
+                // Test 4: Renderer
+                this.results.push({
+                    name: 'Renderer Creation',
+                    passed: this.testRenderer(),
+                    message: this.testRenderer() ? 
+                        'Renderer created successfully' : 
+                        'Renderer creation failed'
+                });
+                
+                // Test 5: Performance
+                this.results.push({
+                    name: 'Basic Performance',
+                    passed: this.testPerformance(),
+                    message: this.testPerformance() ? 
+                        'Performance is acceptable' : 
+                        'Performance is poor'
+                });
+                
+                return this.results;
+            }
+            
+            displayResults() {
+                const container = document.getElementById('test-results');
+                container.innerHTML = '<h3>Test Results:</h3>';
+                
+                this.results.forEach(result => {
+                    const div = document.createElement('div');
+                    div.className = 'test-result';
+                    div.innerHTML = `
+                        <span style="color: ${result.passed ? '#2ecc71' : '#e74c3c'}">
+                            ${result.passed ? '✓' : '✗'}
+                        </span>
+                        <strong>${result.name}:</strong> ${result.message}
+                    `;
+                    container.appendChild(div);
+                });
+                
+                const passed = this.results.filter(r => r.passed).length;
+                const total = this.results.length;
+                
+                container.innerHTML += `
+                    <div style="margin-top: 20px; padding: 10px; background: rgba(0,0,0,0.2); border-radius: 5px;">
+                        <strong>Summary:</strong> ${passed}/${total} tests passed (${Math.round(passed/total*100)}%)
+                    </div>
+                `;
+            }
+            
+            benchmark() {
+                const results = [];
+                
+                // Benchmark: Geometry creation
+                const start1 = performance.now();
+                for (let i = 0; i < 1000; i++) {
+                    new THREE.BoxGeometry(1, 1, 1);
+                }
+                results.push(`Geometry creation: ${performance.now() - start1}ms`);
+                
+                // Benchmark: Matrix operations
+                const start2 = performance.now();
+                const matrix = new THREE.Matrix4();
+                for (let i = 0; i < 10000; i++) {
+                    matrix.makeRotationX(Math.random());
+                }
+                results.push(`Matrix operations: ${performance.now() - start2}ms`);
+                
+                // Benchmark: Vector operations
+                const start3 = performance.now();
+                const vector = new THREE.Vector3();
+                for (let i = 0; i < 100000; i++) {
+                    vector.set(Math.random(), Math.random(), Math.random());
+                    vector.normalize();
+                }
+                results.push(`Vector operations: ${performance.now() - start3}ms`);
+                
+                return results;
+            }
+            
+            stressTest() {
+                const objects = [];
+                const geometry = new THREE.BoxGeometry(0.1, 0.1, 0.1);
+                const material = new THREE.MeshBasicMaterial({ color: 0xff0000 });
+                
+                let count = 0;
+                const maxObjects = 10000;
+                
+                const addObjects = () => {
+                    for (let i = 0; i < 100 && count < maxObjects; i++) {
+                        const cube = new THREE.Mesh(geometry, material);
+                        cube.position.set(
+                            (Math.random() - 0.5) * 20,
+                            (Math.random() - 0.5) * 20,
+                            (Math.random() - 0.5) * 20
+                        );
+                        this.scene.add(cube);
+                        objects.push(cube);
+                        count++;
+                    }
+                    
+                    if (count < maxObjects) {
+                        requestAnimationFrame(addObjects);
+                    } else {
+                        console.log(`Stress test: ${count} objects added`);
+                    }
+                };
+                
+                addObjects();
+                
+                return `Adding ${maxObjects} objects...`;
+            }
+            
+            resetTest() {
+                // Remove all objects from scene
+                while(this.scene.children.length > 0) { 
+                    this.scene.remove(this.scene.children[0]); 
+                }
+                
+                // Re-add cube
+                this.scene.add(this.cube);
+                
+                return 'Test scene reset';
+            }
+        }
+        
+        // Global test instance
+        let test;
+        
+        // Test functions
+        function runTests() {
+            if (!test) {
+                test = new VoxelTest();
+            }
+            
+            const results = test.runAllTests();
+            test.displayResults();
+            
+            console.log('Test Results:', results);
+        }
+        
+        function benchmark() {
+            if (!test) {
+                test = new VoxelTest();
+            }
+            
+            const results = test.benchmark();
+            alert('Benchmark Results:\n' + results.join('\n'));
+        }
+        
+        function stressTest() {
+            if (!test) {
+                test = new VoxelTest();
+            }
+            
+            const result = test.stressTest();
+            alert(result);
+        }
+        
+        function resetTest() {
+            if (!test) {
+                test = new VoxelTest();
+            }
+            
+            const result = test.resetTest();
+            alert(result);
+        }
+        
+        // Run tests on load
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                runTests();
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

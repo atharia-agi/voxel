@@ -1,0 +1,129 @@
+{
+  "name": "Villager",
+  "version": "1.0",
+  "type": "npc",
+  "description": "A friendly villager NPC that trades with players",
+  "author": "VoxelEnginePro",
+  "license": "MIT",
+  "appearance": {
+    "body": {
+      "color": 8947848,
+      "width": 0.8,
+      "height": 1.2,
+      "depth": 0.6
+    },
+    "head": {
+      "color": 16112640,
+      "width": 0.6,
+      "height": 0.6,
+      "depth": 0.6
+    },
+    "arms": {
+      "color": 8947848,
+      "width": 0.25,
+      "height": 0.8,
+      "depth": 0.25
+    },
+    "legs": {
+      "color": 2898352,
+      "width": 0.35,
+      "height": 0.6,
+      "depth": 0.35
+    }
+  },
+  "stats": {
+    "health": 100,
+    "max_health": 100,
+    "speed": 5,
+    "jump_force": 8,
+    "damage": 0,
+    "armor": 0
+  },
+  "behavior": {
+    "type": "passive",
+    "aggression_range": 0,
+    "flee_range": 0,
+    "interaction_radius": 3,
+    "roam_radius": 20,
+    "roam_chance": 0.001
+  },
+  "trades": [
+    {
+      "give": {
+        "item": 1,
+        "amount": 3,
+        "name": "Stone"
+      },
+      "receive": {
+        "item": 11,
+        "amount": 1,
+        "name": "Iron Ore"
+      }
+    },
+    {
+      "give": {
+        "item": 5,
+        "amount": 2,
+        "name": "Wood"
+      },
+      "receive": {
+        "item": 10,
+        "amount": 1,
+        "name": "Coal Ore"
+      }
+    },
+    {
+      "give": {
+        "item": 4,
+        "amount": 1,
+        "name": "Sand"
+      },
+      "receive": {
+        "item": 9,
+        "amount": 1,
+        "name": "Glass"
+      }
+    },
+    {
+      "give": {
+        "item": 21,
+        "amount": 4,
+        "name": "Wood Planks"
+      },
+      "receive": {
+        "item": 19,
+        "amount": 1,
+        "name": "Brick"
+      }
+    }
+  ],
+  "dialogue": [
+    "Hello traveler! Nice weather we're having.",
+    "Be careful in the caves, there are monsters!",
+    "I have some goods for trade if you're interested.",
+    "Have you seen the village elder? He's near the church.",
+    "The desert to the south is dangerous, but has valuable resources.",
+    "Watch out for the monsters at night!",
+    "I've been collecting resources, want to trade?",
+    "The mountains to the north have plenty of ores."
+  ],
+  "sounds": {
+    "idle": "villager_idle",
+    "trade": "villager_trade",
+    "hurt": "villager_hurt",
+    "death": "villager_death"
+  },
+  "drops": [
+    {
+      "item": 0,
+      "chance": 1.0,
+      "name": "Nothing"
+    }
+  ],
+  "experience": 5,
+  "model": {
+    "format": "voxel",
+    "scale": 1.0,
+    "animation_speed": 1.0
+  }
+}

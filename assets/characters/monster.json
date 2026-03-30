@@ -1,0 +1,99 @@
+{
+  "name": "Zombie",
+  "version": "1.0",
+  "type": "npc",
+  "description": "A hostile monster that attacks players",
+  "author": "VoxelEnginePro",
+  "license": "MIT",
+  "appearance": {
+    "body": {
+      "color": 2898352,
+      "width": 0.8,
+      "height": 1.2,
+      "depth": 0.6
+    },
+    "head": {
+      "color": 16711680,
+      "width": 0.6,
+      "height": 0.6,
+      "depth": 0.6
+    },
+    "arms": {
+      "color": 2898352,
+      "width": 0.25,
+      "height": 0.8,
+      "depth": 0.25
+    },
+    "legs": {
+      "color": 2898352,
+      "width": 0.35,
+      "height": 0.6,
+      "depth": 0.35
+    },
+    "eyes": {
+      "color": 65535,
+      "width": 0.1,
+      "height": 0.1,
+      "depth": 0.1
+    }
+  },
+  "stats": {
+    "health": 50,
+    "max_health": 50,
+    "speed": 6,
+    "jump_force": 6,
+    "damage": 10,
+    "armor": 2
+  },
+  "behavior": {
+    "type": "hostile",
+    "aggression_range": 10,
+    "attack_range": 2,
+    "attack_cooldown": 1.0,
+    "chase_speed_multiplier": 1.5,
+    "lose_interest_range": 20,
+    "spawn_chance": 0.3
+  },
+  "spawning": {
+    "light_level": 0,
+    "max_light": 7,
+    "min_y": 0,
+    "max_y": 48,
+    "biomes": ["plains", "forest", "desert", "snow"],
+    "night_only": true
+  },
+  "sounds": {
+    "idle": "zombie_idle",
+    "attack": "zombie_attack",
+    "hurt": "zombie_hurt",
+    "death": "zombie_death"
+  },
+  "drops": [
+    {
+      "item": 0,
+      "chance": 0.5,
+      "name": "Rotten Flesh"
+    },
+    {
+      "item": 10,
+      "chance": 0.1,
+      "name": "Coal"
+    }
+  ],
+  "experience": 10,
+  "model": {
+    "format": "voxel",
+    "scale": 1.0,
+    "animation_speed": 1.2,
+    "glow": true,
+    "glow_color": 65535
+  },
+  "effects": [
+    {
+      "type": "poison",
+      "chance": 0.1,
+      "duration": 3,
+      "damage": 1
+    }
+  ]
+}

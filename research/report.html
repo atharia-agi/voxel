@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoxelAgent Research Report</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0a0f; color: #e0e0e0; line-height: 1.6; }
+        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+        header { text-align: center; padding: 60px 20px; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); border-radius: 16px; margin-bottom: 40px; }
+        h1 { font-size: 2.5em; color: #00d4ff; margin-bottom: 10px; }
+        .subtitle { color: #888; font-size: 1.1em; }
+        h2 { color: #00d4ff; font-size: 1.8em; margin: 40px 0 20px; border-bottom: 2px solid #00d4ff; padding-bottom: 10px; }
+        h3 { color: #fff; font-size: 1.3em; margin: 25px 0 15px; }
+        p { margin-bottom: 15px; color: #b0b0b0; }
+        .highlight { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); padding: 20px; border-radius: 12px; margin: 20px 0; border-left: 4px solid #00d4ff; }
+        .card { background: #1a1a2e; padding: 25px; border-radius: 12px; margin: 20px 0; }
+        .card h4 { color: #00d4ff; margin-bottom: 15px; font-size: 1.2em; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #333; }
+        th { background: #16213e; color: #00d4ff; }
+        tr:hover { background: #1a1a2e; }
+        ul { margin: 15px 0; padding-left: 25px; }
+        li { margin-bottom: 8px; color: #b0b0b0; }
+        .tech-stack { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+        .tech-item { background: #16213e; padding: 15px; border-radius: 8px; text-align: center; }
+        .tech-item strong { color: #00d4ff; display: block; margin-bottom: 5px; }
+        .roadmap { position: relative; padding-left: 30px; }
+        .roadmap::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: #00d4ff; }
+        .phase { position: relative; margin-bottom: 30px; }
+        .phase::before { content: ''; position: absolute; left: -34px; top: 5px; width: 12px; height: 12px; background: #00d4ff; border-radius: 50%; }
+        .cost-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; }
+        .cost-item { background: #1a1a2e; padding: 15px; border-radius: 8px; text-align: center; }
+        .cost-item .free { color: #4ade80; font-weight: bold; }
+        .cost-item .paid { color: #f59e0b; }
+        .conclusion { background: linear-gradient(135deg, #00d4ff15 0%, #00d4ff05 100%); border: 1px solid #00d4ff; padding: 30px; border-radius: 12px; margin: 30px 0; }
+        .sources { background: #1a1a2e; padding: 20px; border-radius: 12px; margin-top: 40px; }
+        .source-item { padding: 10px 0; border-bottom: 1px solid #333; }
+        .source-item:last-child { border-bottom: none; }
+        .source-item a { color: #00d4ff; text-decoration: none; }
+        .source-item a:hover { text-decoration: underline; }
+        footer { text-align: center; padding: 40px 20px; color: #666; font-size: 0.9em; margin-top: 40px; border-top: 1px solid #333; }
+        .emoji { font-size: 1.2em; margin-right: 8px; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        @media (max-width: 600px) { .grid-2 { grid-template-columns: 1fr; } h1 { font-size: 1.8em; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎮 VoxelAgent Research Report</h1>
+            <p class="subtitle">Building a Voxel-Based AI Agentic Platform Like AIIS.Live</p>
+            <p style="color: #666; margin-top: 15px;">Research Date: January 31, 2026 | Sources: 8+</p>
+        </header>
+
+        <section>
+            <h2>📋 Executive Summary</h2>
+            <div class="highlight">
+                <p><strong>Verdict:</strong> Building a voxel-based AI agentic platform connected to $VOXEL is <span style="color: #4ade80; font-weight: bold;">VIABLE</span> with current technology.</p>
+                <p style="margin-top: 10px;">Key takeaways: Three.js handles voxel rendering efficiently, Solana AI tooling is mature, AIIS.Live proves the business model, and $VOXEL can integrate with proper token utility design.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>🔍 Key Findings</h2>
+            
+            <div class="card">
+                <h4>1. AIIS.Live = Your Blueprint</h4>
+                <p><a href="https://aiis.live/" target="_blank">Visit AIIS.Live ↗</a></p>
+                <ul>
+                    <li><strong>Concept:</strong> Autonomous AI agents in a virtual world that build, battle, and earn</li>
+                    <li><strong>World:</strong> 100x100 grid with biomes, guild wars, PvE dungeons</li>
+                    <li><strong>Economy:</strong> Human funds agents → Agents operate → Humans profit</li>
+                    <li><strong>Token:</strong> $AIIS powers the economy with treasury taxes</li>
+                </ul>
+                <p style="margin-top: 15px; padding: 10px; background: #16213e; border-radius: 8px;"><strong>💡 Key Insight:</strong> The "human funds, AI operates" model is proven and working.</p>
+            </div>
+
+            <div class="card">
+                <h4>2. Voxel Web Tech is Production-Ready</h4>
+                <p>Three.js can handle <strong>millions of voxels</strong> with proper optimization:</p>
+                <div class="tech-stack">
+                    <div class="tech-item"><strong>InstancedMesh</strong>Performance optimization</div>
+                    <div class="tech-item"><strong>LOD</strong>Level of Detail rendering</div>
+                    <div class="tech-item"><strong>Frustum Culling</strong>Only render visible voxels</div>
+                    <div class="tech-item"><strong>Web Workers</strong>Off-main-thread processing</div>
+                </div>
+                <p style="margin-top: 15px;"><strong>Reference:</strong> <a href="https://www.reddit.com/r/VoxelGameDev/" target="_blank" style="color: #00d4ff;">r/VoxelGameDev ↗</a> shows performant web voxel engines are achievable</p>
+            </div>
+
+            <div class="card">
+                <h4>3. CryptoVoxels vs Decentraland</h4>
+                <table>
+                    <tr><th>Aspect</th><th>CryptoVoxels</th><th>Decentraland</th></tr>
+                    <tr><td>Aesthetic</td><td>Voxel/pixel style</td><td>High-fidelity 3D</td></tr>
+                    <tr><td>Performance</td><td>Lightweight ✓</td><td>Heavy</td></tr>
+                    <tr><td>Entry barrier</td><td>Low ✓</td><td>Higher</td></tr>
+                    <tr><td>Browser-friendly</td><td>Yes ✓</td><td>Needs good hardware</td></tr>
+                </table>
+                <p style="margin-top: 15px;"><strong>💡 Key Insight:</strong> CryptoVoxels proves voxel aesthetic works for web3 worlds.</p>
+            </div>
+
+            <div class="card">
+                <h4>4. Solana AI Ecosystem (2026)</h4>
+                <div class="grid-2">
+                    <div>
+                        <p><strong>📊 Network Stats:</strong></p>
+                        <ul>
+                            <li>5,000+ active GPUs</li>
+                            <li>2M+ data contributors</li>
+                            <li>700+ active nodes</li>
+                            <li>16K+ GitHub stars</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p><strong>🛠️ Available Tools:</strong></p>
+                        <ul>
+                            <li><strong>solana-agent-kit:</strong> 60+ Solana actions</li>
+                            <li>Token swaps, NFT minting</li>
+                            <li>Protocol interactions</li>
+                            <li>Natural language → blockchain</li>
+                        </ul>
+                    </div>
+                </div>
+                <p style="margin-top: 15px;"><a href="https://solana.com/solutions/ai" target="_blank" style="color: #00d4ff;">Explore Solana AI ↗</a></p>
+            </div>
+        </section>
+
+        <section>
+            <h2>💰 Token Utility Models</h2>
+            <table>
+                <tr><th>Model</th><th>Description</th><th>Pros</th><th>Cons</th></tr>
+                <tr><td>Agent Spawning</td><td>Pay $VOXEL to create agents</td><td>Simple</td><td>One-time revenue</td></tr>
+                <tr><td>Action Fees</td><td>% of agent actions → treasury</td><td>Recurring ✓</td><td>Complexity</td></tr>
+                <tr><td>Staking</td><td>Stake to unlock features</td><td>Lock-in ✓</td><td>User friction</td></tr>
+                <tr><td>Combat/Resources</td><td>$VOXEL as in-game currency</td><td>Engagement ✓</td><td>Game design needed</td></tr>
+                <tr><td>Premium Features</td><td>Pay for special abilities</td><td>Revenue</td><td>Pay-to-win risk</td></tr>
+            </table>
+        </section>
+
+        <section>
+            <h2>🛠️ Technical Stack</h2>
+            <div class="grid-2">
+                <div class="card">
+                    <h4>🎨 Frontend (Voxel World)</h4>
+                    <ul>
+                        <li><strong>Framework:</strong> Next.js 14+</li>
+                        <li><strong>3D Engine:</strong> Three.js + React Three Fiber</li>
+                        <li><strong>State:</strong> Zustand (lightweight)</li>
+                        <li><strong>Styling:</strong> Tailwind CSS</li>
+                        <li><strong>Hosting:</strong> Vercel (free tier)</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h4>🤖 Backend (Agent Logic)</h4>
+                    <ul>
+                        <li><strong>Runtime:</strong> Node.js / Edge Functions</li>
+                        <li><strong>AI:</strong> OpenAI API / Claude</li>
+                        <li><strong>Agent Framework:</strong> LangChain.js</li>
+                        <li><strong>Database:</strong> Supabase (free tier)</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h4>⛓️ Blockchain (Solana)</h4>
+                    <ul>
+                        <li><strong>Token:</strong> SPL Token on Solana</li>
+                        <li><strong>Wallet:</strong> Solana Wallet Adapter</li>
+                        <li><strong>RPC:</strong> Helium (free tier)</li>
+                        <li><strong>Agent Kit:</strong> solana-agent-kit</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>🗺️ Development Roadmap</h2>
+            <div class="roadmap">
+                <div class="phase">
+                    <h3>Phase 1: MVP (Weeks 1-4)</h3>
+                    <ul>
+                        <li>Basic voxel world (16x16 grid)</li>
+                        <li>Simple agent spawning (no AI yet)</li>
+                        <li>$VOXEL token integration</li>
+                        <li>Basic wallet connection</li>
+                    </ul>
+                </div>
+                <div class="phase">
+                    <h3>Phase 2: Agentic (Weeks 5-8)</h3>
+                    <ul>
+                        <li>AI agent framework integration</li>
+                        <li>Agent task system</li>
+                        <li>Basic economy (earn/spend $VOXEL)</li>
+                        <li>Leaderboards</li>
+                    </ul>
+                </div>
+                <div class="phase">
+                    <h3>Phase 3: Social (Weeks 9-12)</h3>
+                    <ul>
+                        <li>Multi-agent interaction</li>
+                        <li>Guild system</li>
+                        <li>PvE content (dungeons)</li>
+                        <li>Community features</li>
+                    </ul>
+                </div>
+                <div class="phase">
+                    <h3>Phase 4: Scale (Weeks 13+)</h3>
+                    <ul>
+                        <li>Mobile optimization</li>
+                        <li>Advanced AI capabilities</li>
+                        <li>DAO governance</li>
+                        <li>Cross-platform expansion</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>💵 Cost Estimates</h2>
+            <div class="cost-table">
+                <div class="cost-item">
+                    <strong>Component</strong>
+                </div>
+                <div class="cost-item">
+                    <strong>Free Option</strong>
+                </div>
+                <div class="cost-item">
+                    <strong>Paid (if needed)</strong>
+                </div>
+            </div>
+            <div class="cost-table" style="margin-top: 5px;">
+                <div class="cost-item">Hosting</div>
+                <div class="cost-item"><span class="free">Vercel (100GB)</span></div>
+                <div class="cost-item"><span class="paid">~$20/mo</span></div>
+            </div>
+            <div class="cost-table">
+                <div class="cost-item">Database</div>
+                <div class="cost-item"><span class="free">Supabase (500MB)</span></div>
+                <div class="cost-item"><span class="paid">~$25/mo</span></div>
+            </div>
+            <div class="cost-table">
+                <div class="cost-item">AI API</div>
+                <div class="cost-item"><span class="free">$5 OpenAI credit</span></div>
+                <div class="cost-item"><span class="paid">Usage-based</span></div>
+            </div>
+            <div class="cost-table">
+                <div class="cost-item">RPC</div>
+                <div class="cost-item"><span class="free">Helium Free Tier</span></div>
+                <div class="cost-item"><span class="paid">~$15/mo</span></div>
+            </div>
+            <div class="highlight" style="text-align: center; margin-top: 20px;">
+                <strong style="color: #4ade80;">MVP Cost: ~$0-10/month initially</strong>
+            </div>
+        </section>
+
+        <section>
+            <div class="conclusion">
+                <h2>🎯 Conclusion</h2>
+                <p><strong>Building VoxelAgent is <span style="color: #4ade80; font-size: 1.2em;">TECHNICALLY FEASIBLE</span> with current tools.</strong></p>
+                <h3 style="margin-top: 20px;">Key Success Factors:</h3>
+                <ul>
+                    <li><strong>Start simple</strong> — voxel world first, AI second</li>
+                    <li><strong>Token utility from day 1</strong> — even if basic</li>
+                    <li><strong>Community-driven</strong> — let users shape the platform</li>
+                    <li><strong>Performance-focused</strong> — lightweight is the differentiator</li>
+                </ul>
+                <h3 style="margin-top: 20px;">What Makes VoxelAgent Unique:</h3>
+                <ul>
+                    <li>🎨 Voxel aesthetic is distinctive, nostalgic, and lightweight</li>
+                    <li>🤖 AI agents in voxel world — specific niche, not general metaverse</li>
+                    <li>📱 Browser-first, no VR/AR requirements</li>
+                    <li>💎 Token-first design from day 1</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="sources">
+            <h2>📚 Sources</h2>
+            <div class="source-item">
+                <strong>1. AIIS.Live</strong> — <a href="https://aiis.live/" target="_blank">https://aiis.live/</a>
+            </div>
+            <div class="source-item">
+                <strong>2. Solana AI Solutions</strong> — <a href="https://solana.com/solutions/ai" target="_blank">https://solana.com/solutions/ai</a>
+            </div>
+            <div class="source-item">
+                <strong>3. Solana Agent Kit</strong> — <a href="https://github.com/sendaifun/solana-agent-kit" target="_blank">https://github.com/sendaifun/solana-agent-kit</a>
+            </div>
+            <div class="source-item">
+                <strong>4. Alchemy: Build Solana AI Agents</strong> — <a href="https://www.alchemy.com/blog/how-to-build-solana-ai-agents-in-2026" target="_blank">https://www.alchemy.com/blog/how-to-build-solana-ai-agents-in-2026</a>
+            </div>
+            <div class="source-item">
+                <strong>5. Three.js Best Practices</strong> — <a href="https://www.utsubo.com/blog/threejs-best-practices-100-tips" target="_blank">https://www.utsubo.com/blog/threejs-best-practices-100-tips</a>
+            </div>
+            <div class="source-item">
+                <strong>6. CryptoVoxels vs Decentraland</strong> — <a href="https://finder.com/nfts/cryptovoxels-vs-decentraland" target="_blank">https://finder.com/nfts/cryptovoxels-vs-decentraland</a>
+            </div>
+            <div class="source-item">
+                <strong>7. Voxel Game Dev Reddit</strong> — <a href="https://www.reddit.com/r/VoxelGameDev/" target="_blank">https://www.reddit.com/r/VoxelGameDev/</a>
+            </div>
+            <div class="source-item">
+                <strong>8. Top AI Agent Tokens on Solana</strong> — <a href="https://bingx.com/en/learn/article/top-ai-agent-crypto-projects-in-solana-ecosystem" target="_blank">https://bingx.com/en/learn/article/top-ai-agent-crypto-projects-in-solana-ecosystem</a>
+            </div>
+        </section>
+
+        <footer>
+            <p>Generated by BrowserOS Deep Research</p>
+            <p style="margin-top: 10px;">January 31, 2026</p>
+        </footer>
+    </div>
+</body>
+</html>
